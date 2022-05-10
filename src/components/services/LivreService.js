@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const LIVRE_BASE_REST_API_URL = 'http://localhost:8082/livre';
+const LIVRE_BASE_REST_API_URL = 'http://localhost:8080/livre';
 
 
 const getAllLivres = () => {

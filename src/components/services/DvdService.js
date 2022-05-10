@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const DVD_BASE_REST_API_URL = 'http://localhost:8082/DVD';
+const DVD_BASE_REST_API_URL = 'http://localhost:8080/DVD';
 
 
 const getAllDvds = () => {

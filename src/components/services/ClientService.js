@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const CLIENT_BASE_REST_API_URL = 'http://localhost:8082/client';
+const CLIENT_BASE_REST_API_URL = 'http://localhost:8080/client';
 
       const getAllClients = () => {
         return axios.get(CLIENT_BASE_REST_API_URL)
