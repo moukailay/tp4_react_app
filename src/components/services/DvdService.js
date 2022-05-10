@@ -1,21 +1,27 @@
-import httpClient from "../ConfigAxios"
+import axios from 'axios'
+
+const DVD_BASE_REST_API_URL = 'http://localhost:8082/DVD';
+
 
 const getAllDvds = () => {
-    return httpClient.get(`/Dvd`)
+    return axios.get(DVD_BASE_REST_API_URL)
 }
 
-const createDvd = (Dvd) => {
-    return httpClient.post("/Dvd", Dvd)
+const createDvd = (dvd) => {
+    return axios.post(DVD_BASE_REST_API_URL, dvd)
 }
 
-const getDvdById = (DvdId) => {
-    return httpClient.get(`/Dvd/${DvdId}`)
+const getDvdById = (dvdId) => {
+    return axios.get(DVD_BASE_REST_API_URL + '/' + dvdId);
 }
 
-const updateDvd = (DvdId, Dvd) => {
-    return httpClient.put("/Dvd", DvdId, Dvd)
+const updateDvd = (dvdId, dvd) => {
+    return axios.put(DVD_BASE_REST_API_URL + '/' +dvdId, dvd);
 }
 
-const deleteDvd = (DvdId) => {
-    return httpClient.delete(`/Dvd/${DvdId}`)
+const deleteDvd = (dvdId) => {
+    return axios.delete(DVD_BASE_REST_API_URL + '/' + dvdId);
 }
+
+
+export default {getAllDvds, createDvd, getDvdById, updateDvd, deleteDvd}

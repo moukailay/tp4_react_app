@@ -1,21 +1,27 @@
-import httpCd from "../ConfigAxios"
+import axios from 'axios'
 
-const getAllCds = () => {
-    return httpCd.get(`/Cd`)
-}
+const CD_BASE_REST_API_URL = 'http://localhost:8082/cd';
 
-const createCd = (Cd) => {
-    return httpCd.post("/Cd", Cd)
-}
+    
+    const getAllCds = () => {
+        return axios.get(CD_BASE_REST_API_URL)
+    }
 
-const getCdById = (CdId) => {
-    return httpCd.get(`/Cd/${CdId}`)
-}
+    const createCd = (cd) => {
+        return axios.post(CD_BASE_REST_API_URL, cd)
+    }
 
-const updateCd = (CdId, Cd) => {
-    return httpCd.put("/Cd", CdId, Cd)
-}
+    const getCdById = (cdId) => {
+        return axios.get(CD_BASE_REST_API_URL + '/' + cdId);
+    }
 
-const deleteCd = (CdId) => {
-    return httpCd.delete(`/Cd/${CdId}`)
-}
+    const updateCd = (cdId, cd) => {
+        return axios.put(CD_BASE_REST_API_URL + '/' +cdId, cd);
+    }
+
+    const deleteCd = (cdId) => {
+        return axios.delete(CD_BASE_REST_API_URL + '/' + cdId);
+    }
+
+    
+export default {getAllCds, createCd, getCdById, updateCd, deleteCd}
