@@ -1,32 +1,36 @@
 import axios from 'axios'
+const BASE='http://localhost:8080';
+const EMPRUNT_DVD_BASE_REST_API_URL = BASE +'/empruntDvd';
+const CLIENT_BASE_REST_API_URL = BASE +'/client';
+const DVD_DISPO_BASE_REST_API_URL = BASE +'/dvdDispo';
 
-const EMPRUNT_DVD_BASE_REST_API_URL = 'http://localhost:8080/empruntDvd';
-const CLIENT_BASE_REST_API_URL = 'http://localhost:8080/client';
-const DVD_DISPO_BASE_REST_API_URL = 'http://localhost:8080/dvdDispo';
+class EmpruntDvdService{
 
+    getAllEmpruntDvds(){
+        return axios.get(EMPRUNT_DVD_BASE_REST_API_URL);
+    }
+ 
+    createEmpruntDvd(clientId,dvdId){
+        return axios.post(BASE +'/saveEmprunt'  + '/'+clientId+ '/'+dvdId);
+    }
+ 
+    getEmpruntDvdById(pretDocumentId){
+        return axios.get(EMPRUNT_DVD_BASE_REST_API_URL + '/' + pretDocumentId);
+    }
+ 
+   
 
-  const getAllEmpruntDvds = () => {
-    return axios.get(EMPRUNT_DVD_BASE_REST_API_URL);
-  }
+    deleteEmpruntDvd(pretDocumentId){
+        return axios.delete(BASE +'/supEmprunt' + '/' + pretDocumentId);
+    }
 
-  const createEmpruntDvd = (clientId,dvdId) => {
-    return axios.post('http://localhost:8080/saveEmprunt'  + '/'+clientId+ '/'+dvdId);
-  }
+    getAllClients(){
+        return axios.get(CLIENT_BASE_REST_API_URL);
+    }
 
-  const getEmpruntDvdById = () => {
-    return axios.get(EMPRUNT_DVD_BASE_REST_API_URL + '/' + pretDocumentId);
-  }
-  
-  const deleteEmpruntDvd = () => {
-    return axios.delete('http://localhost:8080/supEmprunt' + '/' + pretDocumentId);
-  }
+    getAllDvdsDispo(){
+        return axios.get(DVD_DISPO_BASE_REST_API_URL);
+    }
+}
 
-  const getAllClients = () => {
-    return axios.get(CLIENT_BASE_REST_API_URL);
-  }
-
-  const getAllDvdsDispo = () => {
-    return axios.get(DVD_DISPO_BASE_REST_API_URL);
-  }
-
-export default {getAllEmpruntDvds, createEmpruntDvd, getEmpruntDvdById, deleteEmpruntDvd, getAllClients, getAllDvdsDispo};
+export default new EmpruntDvdService();

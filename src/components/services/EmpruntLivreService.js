@@ -1,32 +1,36 @@
 import axios from 'axios'
+const BASE='http://localhost:8080';
+const EMPRUNT_LIVRE_BASE_REST_API_URL = BASE +'/empruntLivre';
+const CLIENT_BASE_REST_API_URL = BASE +'/client';
+const LIVRE_DISPO_BASE_REST_API_URL = BASE +'/livreDispo';
 
-const EMPRUNT_CD_BASE_REST_API_URL = 'http://localhost:8080/empruntCd';
-const CLIENT_BASE_REST_API_URL = 'http://localhost:8080/client';
-const CD_DISPO_BASE_REST_API_URL = 'http://localhost:8080/cdDispo';
+class EmpruntLivreService{
 
+    getAllEmpruntLivres(){
+        return axios.get(EMPRUNT_LIVRE_BASE_REST_API_URL);
+    }
+ 
+    createEmpruntLivre(clientId,livreId){
+        return axios.post(BASE +'/saveEmprunt' + '/'+clientId+ '/'+livreId);
+    }
+ 
+    getEmpruntLivreById(pretDocumentId){
+        return axios.get(EMPRUNT_LIVRE_BASE_REST_API_URL + '/' + pretDocumentId);
+    }
+ 
+   
 
-  const getAllEmpruntLivres = () => {
-    return axios.get(EMPRUNT_CD_BASE_REST_API_URL);
-  }
+    deleteEmpruntLivre(pretDocumentId){
+        return axios.delete(BASE +'/supEmprunt' + '/' + pretDocumentId);
+    }
 
-  const createEmpruntLivre = (clientId,livreId) => {
-    return axios.post('http://localhost:8080/saveEmprunt'  + '/'+clientId+ '/'+livreId);
-  }
+    getAllClients(){
+        return axios.get(CLIENT_BASE_REST_API_URL);
+    }
 
-  const getEmpruntLivreById = (pretDocumentId) => {
-    return axios.get(EMPRUNT_CD_BASE_REST_API_URL + '/' + pretDocumentId);
-  }
-  
-  const deleteEmpruntLivre = () => {
-    return axios.delete('http://localhost:8080/supEmprunt' + '/' + pretDocumentId);
-  }
+    getAllLivresDispo(){
+        return axios.get(LIVRE_DISPO_BASE_REST_API_URL);
+    }
+}
 
-  const getAllClients = () => {
-    return axios.get(CLIENT_BASE_REST_API_URL);
-  }
-
-  const getAllLivresDispo = () => {
-    return axios.get(CD_DISPO_BASE_REST_API_URL);
-  }
-
-export default {getAllEmpruntLivres, createEmpruntLivre, getEmpruntLivreById, deleteEmpruntLivre, getAllClients, getAllLivresDispo};
+export default new EmpruntLivreService();

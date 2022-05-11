@@ -1,32 +1,36 @@
 import axios from 'axios'
+const BASE='http://localhost:8080';
+const EMPRUNT_CD_BASE_REST_API_URL = BASE +'/empruntCd';
+const CLIENT_BASE_REST_API_URL = BASE +'/client';
+const CD_DISPO_BASE_REST_API_URL = BASE +'/cdDispo';
 
-const EMPRUNT_CD_BASE_REST_API_URL = 'http://localhost:8080/empruntCd';
-const CLIENT_BASE_REST_API_URL = 'http://localhost:8080/client';
-const CD_DISPO_BASE_REST_API_URL = 'http://localhost:8080/cdDispo';
+class EmpruntCdService{
 
+    getAllEmpruntCds(){
+        return axios.get(EMPRUNT_CD_BASE_REST_API_URL);
+    }
+ 
+    createEmpruntCd(clientId,cdId){
+        return axios.post(BASE +'/saveEmprunt'  + '/'+clientId+ '/'+cdId);
+    }
+ 
+    getEmpruntcdById(pretDocumentId){
+        return axios.get(EMPRUNT_CD_BASE_REST_API_URL + '/' + pretDocumentId);
+    }
+ 
+   
 
-  const getAllEmpruntCds = () => {
-    return axios.get(EMPRUNT_CD_BASE_REST_API_URL);
-  }
+    deleteEmpruntCd(pretDocumentId){
+        return axios.delete(BASE +'/supEmprunt' + '/' + pretDocumentId);
+    }
 
-  const createEmpruntCd = (clientId,cdId) => {
-    return axios.post('http://localhost:8080/saveEmprunt'  + '/'+clientId+ '/'+cdId);
-  }
+    getAllClients(){
+        return axios.get(CLIENT_BASE_REST_API_URL);
+    }
 
-  const getEmpruntCdById = (pretDocumentId) => {
-    return axios.get(EMPRUNT_CD_BASE_REST_API_URL + '/' + pretDocumentId);
-  }
-  
-  const deleteEmpruntCd = () => {
-    return axios.delete('http://localhost:8080/supEmprunt' + '/' + pretDocumentId);
-  }
+    getAllCdsDispo(){
+        return axios.get(CD_DISPO_BASE_REST_API_URL);
+    }
+}
 
-  const getAllClients = () => {
-    return axios.get(CLIENT_BASE_REST_API_URL);
-  }
-
-  const getAllCdsDispo = () => {
-    return axios.get(CD_DISPO_BASE_REST_API_URL);
-  }
-
-export default {getAllEmpruntCds, createEmpruntCd, getEmpruntCdById, deleteEmpruntCd, getAllClients, getAllCdsDispo};
+export default new EmpruntCdService();
